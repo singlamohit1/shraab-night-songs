@@ -1,20 +1,24 @@
 const ytSearch = require('yt-search');
 
 const songs = [
-    "Tujhe Yaad Na Meri Aayee audio",
-    "o saathi re kishore kumar audio",
-    "likhe jo khat tujhe audio",
-    "o mere dil ke chain kishore kumar audio"
+    "Mujhko Rana Ji Maaf Karna audio"
 ];
 
 async function getIds() {
     for (let song of songs) {
-        const r = await ytSearch(song);
-        if (r.videos.length > 0) {
-            console.log(`Title: ${r.videos[0].title}`);
-            console.log(`ID: ${r.videos[0].videoId}`);
-            console.log('---');
+        try {
+            const r = await ytSearch(song);
+            const videos = r.videos.slice(0, 3);
+            console.log(`\nResults for: ${song}`);
+            videos.forEach((v, i) => {
+                console.log(`${i+1}. ${v.title}`);
+                console.log(`   ID: ${v.videoId}`);
+                console.log(`   Duration: ${v.timestamp}`);
+            });
+        } catch (e) {
+            console.error(`Error for ${song}:`, e);
         }
     }
 }
+
 getIds();

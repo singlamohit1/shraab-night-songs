@@ -106,5 +106,11 @@ export const songs = [
     title: "O Mere Dil Ke Chain",
     artist: "Kishore Kumar",
     youtubeId: "_w14bUcxl1c",
+  },
+  {
+    id: 17,
+    title: "Mujhko Rana Ji Maaf Karna",
+    artist: "Alka Yagnik, Ila Arun",
+    youtubeId: "o4fvcWTUboQ",
   }
 ];
