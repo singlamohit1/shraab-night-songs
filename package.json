@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@distube/ytdl-core": "^4.16.12",
+    "play-dl": "^1.9.7",
     "posthog-js": "^1.415.1",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-youtube": "^10.1.0",
+    "yt-search": "^2.13.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.17",

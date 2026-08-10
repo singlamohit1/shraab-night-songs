@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import YouTube from 'react-youtube';
 import { songs } from '../data/songs';
 import './MusicPlayer.css';
 
@@ -8,23 +9,82 @@ const MusicPlayer = () => {
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
-
-  const audioRef = useRef(null);
+  const [player, setPlayer] = useState(null);
+  
+  const progressInterval = useRef(null);
   const currentSong = songs[currentSongIndex];
 
-  useEffect(() => {
+  // Options for the YouTube iframe
+  const opts = {
+    height: '0',
+    width: '0',
+    playerVars: {
+      autoplay: 1, // Auto-play the video on load
+      controls: 0,
+      disablekb: 1,
+      fs: 0,
+      modestbranding: 1,
+      playsinline: 1
+    },
+  };
+
+  const onReady = (event) => {
+    setPlayer(event.target);
+    setDuration(event.target.getDuration());
     if (isPlaying) {
-      audioRef.current.play();
+      event.target.playVideo();
     }
-  }, [currentSongIndex]);
+  };
+
+  const onStateChange = (event) => {
+    // YT.PlayerState.PLAYING = 1
+    // YT.PlayerState.PAUSED = 2
+    // YT.PlayerState.ENDED = 0
+    if (event.data === 1) {
+      setIsPlaying(true);
+      setDuration(event.target.getDuration());
+      startProgressLoop(event.target);
+    } else {
+      setIsPlaying(false);
+      stopProgressLoop();
+    }
+    
+    if (event.data === 0) {
+      handleNext();
+    }
+  };
+
+  const startProgressLoop = (ytPlayer) => {
+    stopProgressLoop();
+    progressInterval.current = setInterval(async () => {
+      const time = await ytPlayer.getCurrentTime();
+      const dur = await ytPlayer.getDuration();
+      setCurrentTime(time);
+      if (dur > 0) {
+        setDuration(dur);
+        setProgress((time / dur) * 100);
+      }
+    }, 1000);
+  };
+
+  const stopProgressLoop = () => {
+    if (progressInterval.current) {
+      clearInterval(progressInterval.current);
+    }
+  };
+
+  useEffect(() => {
+    return () => stopProgressLoop();
+  }, []);
 
   const togglePlayPause = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
+    if (player) {
+      if (isPlaying) {
+        player.pauseVideo();
+      } else {
+        player.playVideo();
+      }
     }
-    setIsPlaying(!isPlaying);
   };
 
   const handleNext = () => {
@@ -35,22 +95,18 @@ const MusicPlayer = () => {
     setCurrentSongIndex((prev) => (prev - 1 + songs.length) % songs.length);
   };
 
-  const handleTimeUpdate = () => {
-    const time = audioRef.current.currentTime;
-    const dur = audioRef.current.duration;
-    setCurrentTime(time);
-    setDuration(dur);
-    setProgress((time / dur) * 100);
-  };
-
   const handleProgressChange = (e) => {
-    const newTime = (e.target.value / 100) * duration;
-    audioRef.current.currentTime = newTime;
-    setProgress(e.target.value);
+    const newProgress = e.target.value;
+    setProgress(newProgress);
+    if (player && duration > 0) {
+      const newTime = (newProgress / 100) * duration;
+      player.seekTo(newTime, true);
+      setCurrentTime(newTime);
+    }
   };
 
   const formatTime = (time) => {
-    if (isNaN(time)) return "0:00";
+    if (!time || isNaN(time)) return "0:00";
     const mins = Math.floor(time / 60);
     const secs = Math.floor(time % 60);
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
@@ -58,12 +114,15 @@ const MusicPlayer = () => {
 
   return (
     <div className="music-player-container">
-      <audio
-        ref={audioRef}
-        src={currentSong.src}
-        onTimeUpdate={handleTimeUpdate}
-        onEnded={handleNext}
-      />
+      {/* Hidden YouTube Player */}
+      <div style={{ position: 'absolute', opacity: 0, zIndex: -100, pointerEvents: 'none' }}>
+        <YouTube 
+          videoId={currentSong.youtubeId} 
+          opts={opts} 
+          onReady={onReady} 
+          onStateChange={onStateChange} 
+        />
+      </div>
       
       <div className="player-content">
         <div className="song-info">

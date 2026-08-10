@@ -17,7 +17,7 @@ for i, song in enumerate(songs, 1):
     output_path = os.path.join(output_dir, f"song_{i}.%(ext)s")
     
     command = [
-        "./yt-dlp",
+        "yt-dlp",
         f"ytsearch1:{song}",
         "-x", # Extract audio
         "--audio-format", "mp3",
