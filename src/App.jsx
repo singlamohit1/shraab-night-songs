@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import MusicPlayer from './components/MusicPlayer';
 import DrinkingPrompt from './components/DrinkingPrompt';
 import HistoryBadge from './components/HistoryBadge';
@@ -7,9 +7,9 @@ import './index.css';
 function App() {
   const [historyUpdated, setHistoryUpdated] = useState(0);
 
-  const handlePromptComplete = () => {
+  const handlePromptComplete = useCallback(() => {
     setHistoryUpdated(prev => prev + 1);
-  };
+  }, []);
 
   return (
     <div className="app-container">

@@ -6,18 +6,17 @@ const DrinkingPrompt = ({ onComplete }) => {
   const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
-    const historyStr = localStorage.getItem('drinkingHistory');
-    const history = historyStr ? JSON.parse(historyStr) : [];
-    
+    const lastPromptDate = localStorage.getItem('lastPromptDate');
     const today = new Date().toLocaleDateString();
     
-    // If today is not in history, show the prompt
-    if (history.length === 0 || history[history.length - 1].date !== today) {
+    // If today is not the last prompt date, show the prompt
+    if (lastPromptDate !== today) {
       setShowPrompt(true);
     } else {
       onComplete(); // Already answered today
     }
-  }, [onComplete]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleYes = () => {
     const historyStr = localStorage.getItem('drinkingHistory');
@@ -27,6 +26,7 @@ const DrinkingPrompt = ({ onComplete }) => {
     const newEntry = { date: today, timestamp: Date.now() };
     
     localStorage.setItem('drinkingHistory', JSON.stringify([...history, newEntry]));
+    localStorage.setItem('lastPromptDate', today);
     
     posthog.capture('drinking_session_recorded', { date: today });
     setShowPrompt(false);
@@ -34,7 +34,10 @@ const DrinkingPrompt = ({ onComplete }) => {
   };
 
   const handleNo = () => {
-    posthog.capture('drinking_session_declined', { date: new Date().toLocaleDateString() });
+    const today = new Date().toLocaleDateString();
+    localStorage.setItem('lastPromptDate', today);
+    
+    posthog.capture('drinking_session_declined', { date: today });
     setShowPrompt(false);
     onComplete();
   };
