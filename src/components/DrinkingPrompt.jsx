@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import posthog from 'posthog-js';
 import './DrinkingPrompt.css';
 
 const DrinkingPrompt = ({ onComplete }) => {
@@ -27,11 +28,13 @@ const DrinkingPrompt = ({ onComplete }) => {
     
     localStorage.setItem('drinkingHistory', JSON.stringify([...history, newEntry]));
     
+    posthog.capture('drinking_session_recorded', { date: today });
     setShowPrompt(false);
     onComplete();
   };
 
   const handleNo = () => {
+    posthog.capture('drinking_session_declined', { date: new Date().toLocaleDateString() });
     setShowPrompt(false);
     onComplete();
   };

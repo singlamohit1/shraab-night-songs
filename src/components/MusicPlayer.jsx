@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import YouTube from 'react-youtube';
 import { songs } from '../data/songs';
+import posthog from 'posthog-js';
 import './MusicPlayer.css';
 
 const MusicPlayer = () => {
@@ -41,15 +42,31 @@ const MusicPlayer = () => {
     // YT.PlayerState.PAUSED = 2
     // YT.PlayerState.ENDED = 0
     if (event.data === 1) {
+      if (!isPlaying) {
+        posthog.capture('song_played', {
+          title: currentSong.title,
+          artist: currentSong.artist,
+          youtubeId: currentSong.youtubeId
+        });
+      }
       setIsPlaying(true);
       setDuration(event.target.getDuration());
       startProgressLoop(event.target);
     } else {
+      if (event.data === 2 && isPlaying) {
+        posthog.capture('song_paused', {
+          title: currentSong.title,
+          artist: currentSong.artist
+        });
+      }
       setIsPlaying(false);
       stopProgressLoop();
     }
     
     if (event.data === 0) {
+      posthog.capture('song_completed', {
+        title: currentSong.title
+      });
       handleNext();
     }
   };
@@ -88,10 +105,12 @@ const MusicPlayer = () => {
   };
 
   const handleNext = () => {
+    posthog.capture('song_next', { current_title: currentSong.title });
     setCurrentSongIndex((prev) => (prev + 1) % songs.length);
   };
 
   const handlePrev = () => {
+    posthog.capture('song_prev', { current_title: currentSong.title });
     setCurrentSongIndex((prev) => (prev - 1 + songs.length) % songs.length);
   };
 
