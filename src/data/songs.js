@@ -82,5 +82,29 @@ export const songs = [
     artist: "Kumar Sanu, Alka Yagnik",
     youtubeId: "dDR4oiyjUBA",
     cover: "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=300&h=300&fit=crop"
+  },
+  {
+    id: 13,
+    title: "Tujhe Yaad Na Meri Aayee",
+    artist: "Udit Narayan, Alka Yagnik",
+    youtubeId: "vzWWTX83C_Q",
+  },
+  {
+    id: 14,
+    title: "O Saathi Re Tere Bina Bhi",
+    artist: "Kishore Kumar",
+    youtubeId: "hfpqp5wNJc0",
+  },
+  {
+    id: 15,
+    title: "Likhe Jo Khat Tujhe",
+    artist: "Mohammed Rafi",
+    youtubeId: "E1xPY3OiuzI",
+  },
+  {
+    id: 16,
+    title: "O Mere Dil Ke Chain",
+    artist: "Kishore Kumar",
+    youtubeId: "_w14bUcxl1c",
   }
 ];
