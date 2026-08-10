@@ -126,7 +126,7 @@ const MusicPlayer = () => {
       
       <div className="player-content">
         <div className="song-info">
-          <img src={currentSong.cover} alt="cover" className="cover-img" />
+          <img src={`https://img.youtube.com/vi/${currentSong.youtubeId}/0.jpg`} alt="cover" className="cover-img" />
           <div className="details">
             <h3 className="song-title">{currentSong.title}</h3>
             <p className="song-artist">{currentSong.artist}</p>
