@@ -61,5 +61,26 @@ export const songs = [
     artist: "Nusrat Fateh Ali Khan",
     youtubeId: "6hJ7bwZEBoQ", 
     cover: "https://images.unsplash.com/photo-1582736181711-d0b8f05ed5bd?w=300&h=300&fit=crop",
+  },
+  {
+    id: 10,
+    title: "Dheere Dheere Se Meri Zindagi",
+    artist: "Kumar Sanu, Anuradha Paudwal",
+    youtubeId: "Mcs2xEZ6K8o",
+    cover: "https://images.unsplash.com/photo-1483086431886-3590a88317fe?w=300&h=300&fit=crop"
+  },
+  {
+    id: 11,
+    title: "Kitni Hasrat Hai Humein",
+    artist: "Kumar Sanu, Sadhana Sargam",
+    youtubeId: "YysG5pg1qeg",
+    cover: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=300&h=300&fit=crop"
+  },
+  {
+    id: 12,
+    title: "Raah Mein Unse Mulaqat Ho Gayi",
+    artist: "Kumar Sanu, Alka Yagnik",
+    youtubeId: "dDR4oiyjUBA",
+    cover: "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?w=300&h=300&fit=crop"
   }
 ];

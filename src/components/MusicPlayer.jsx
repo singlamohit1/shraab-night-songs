@@ -4,7 +4,7 @@ import { songs } from '../data/songs';
 import './MusicPlayer.css';
 
 const MusicPlayer = () => {
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [currentSongIndex, setCurrentSongIndex] = useState(() => Math.floor(Math.random() * songs.length));
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
