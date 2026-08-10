@@ -112,5 +112,99 @@ export const songs = [
     title: "Mujhko Rana Ji Maaf Karna",
     artist: "Alka Yagnik, Ila Arun",
     youtubeId: "o4fvcWTUboQ",
+  },
+  {
+    id: 18,
+    title: "Saat Samundar Paar",
+    artist: "Udit Narayan",
+    youtubeId: "SuQKUY_QMrY",
   }
 ];
+
+export const punjabiSongs = [
+  {
+    id: 101,
+    title: "Apne Viah De Vich Nachda Phire",
+    artist: "Balkar Sidhu",
+    youtubeId: "sRRwGtHWmMQ",
+  },
+  {
+    id: 103,
+    title: "Peg",
+    artist: "Sarthi K",
+    youtubeId: "2dqTfoEDelk",
+  },
+  {
+    id: 104,
+    title: "Alrhaan Kuaariaan",
+    artist: "Diljit Dosanjh",
+    youtubeId: "GrPQlFU2S7I",
+  },
+  {
+    id: 105,
+    title: "Daka",
+    artist: "Diljit Dosanjh",
+    youtubeId: "89SJoyzrjEg",
+  },
+  {
+    id: 107,
+    title: "Mitran Da Naa Chalda",
+    artist: "Harjit Harman",
+    youtubeId: "n69qDHoFPGA",
+  },
+  {
+    id: 108,
+    title: "De De Gerha",
+    artist: "Balvir Boparai",
+    youtubeId: "zNrey3Utq5U",
+  },
+  {
+    id: 109,
+    title: "Pind Pehra Lagda",
+    artist: "Babbu Maan",
+    youtubeId: "3C1dv9vzZnU",
+  },
+  {
+    id: 110,
+    title: "Naag",
+    artist: "Jazzy B",
+    youtubeId: "u5cIZYGs6hg",
+  },
+  {
+    id: 111,
+    title: "Saun Di Jhadi",
+    artist: "Babbu Maan",
+    youtubeId: "HcIfH4EvJkc",
+  },
+  {
+    id: 112,
+    title: "Takue Te Takua",
+    artist: "Jazzy B",
+    youtubeId: "o6PHYwN7oPM",
+  },
+  {
+    id: 113,
+    title: "Nachan Ton Pehlan",
+    artist: "Yuvraj Hans",
+    youtubeId: "PPjJ_2d4k3A",
+  },
+  {
+    id: 114,
+    title: "Mera Mahi Tu Pateya",
+    artist: "Jeeti, Lehmber, Miss Pooja",
+    youtubeId: "3a3J1Q3ld6U",
+  },
+  {
+    id: 115,
+    title: "Aashiq",
+    artist: "PBN, Miss Pooja",
+    youtubeId: "oe_vBsDbYeY",
+  },
+  {
+    id: 116,
+    title: "Tera Yaar Bolda",
+    artist: "Surjit Bindrakhia",
+    youtubeId: "-4svi1QBfjk",
+  }
+];
+

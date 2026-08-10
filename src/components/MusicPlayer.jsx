@@ -1,11 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import YouTube from 'react-youtube';
-import { songs } from '../data/songs';
 import posthog from 'posthog-js';
 import './MusicPlayer.css';
 
-const MusicPlayer = () => {
-  const [currentSongIndex, setCurrentSongIndex] = useState(() => Math.floor(Math.random() * songs.length));
+const MusicPlayer = ({ playlistData }) => {
+  const [currentSongIndex, setCurrentSongIndex] = useState(() => Math.floor(Math.random() * playlistData.length));
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -13,7 +12,7 @@ const MusicPlayer = () => {
   const [player, setPlayer] = useState(null);
   
   const progressInterval = useRef(null);
-  const currentSong = songs[currentSongIndex];
+  const currentSong = playlistData[currentSongIndex];
 
   // Options for the YouTube iframe
   const opts = {
@@ -106,12 +105,12 @@ const MusicPlayer = () => {
 
   const handleNext = () => {
     posthog.capture('song_next', { current_title: currentSong.title });
-    setCurrentSongIndex((prev) => (prev + 1) % songs.length);
+    setCurrentSongIndex((prev) => (prev + 1) % playlistData.length);
   };
 
   const handlePrev = () => {
     posthog.capture('song_prev', { current_title: currentSong.title });
-    setCurrentSongIndex((prev) => (prev - 1 + songs.length) % songs.length);
+    setCurrentSongIndex((prev) => (prev - 1 + playlistData.length) % playlistData.length);
   };
 
   const handleProgressChange = (e) => {
