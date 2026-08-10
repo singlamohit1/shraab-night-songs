@@ -33,5 +33,33 @@ export const songs = [
     artist: "Kumar Sanu, Alka Yagnik",
     youtubeId: "BkYnm-0qe30", 
     cover: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=300&h=300&fit=crop",
+  },
+  {
+    id: 6,
+    title: "Main Duniya Bhula Doonga",
+    artist: "Kumar Sanu, Anuradha Paudwal",
+    youtubeId: "lmZVoOlzbxw", 
+    cover: "https://images.unsplash.com/photo-1502759683299-cdcd6974244f?w=300&h=300&fit=crop",
+  },
+  {
+    id: 7,
+    title: "Meri Bheegi Bheegi Si",
+    artist: "Kishore Kumar",
+    youtubeId: "Wh-bV7i0B78", 
+    cover: "https://images.unsplash.com/photo-1520690214124-2405c5217036?w=300&h=300&fit=crop",
+  },
+  {
+    id: 8,
+    title: "Ankhiyon Ke Jharokhon Se",
+    artist: "Hemlata",
+    youtubeId: "acZ0LggNtm4", 
+    cover: "https://images.unsplash.com/photo-1516223725307-6f76b9ec8742?w=300&h=300&fit=crop",
+  },
+  {
+    id: 9,
+    title: "Dulhe Ka Sehra",
+    artist: "Nusrat Fateh Ali Khan",
+    youtubeId: "6hJ7bwZEBoQ", 
+    cover: "https://images.unsplash.com/photo-1582736181711-d0b8f05ed5bd?w=300&h=300&fit=crop",
   }
 ];

@@ -1,11 +1,10 @@
 const ytSearch = require('yt-search');
 
 const songs = [
-    "Barsaat Ke Mausam Mein Kumar Sanu audio",
-    "Tu Pyar Hai Kisi Aur Ka Kumar Sanu audio",
-    "Hum Pyar Hain Tumhare Kumar Sanu audio",
-    "Tere Ishq Mein Naachenge Kumar Sanu audio",
-    "Pehli Pehli Baar Mohabbat Ki Hai Kumar Sanu audio"
+    "Main Duniya Bhula Doonga audio",
+    "Meri Bheegi Bheegi Si audio",
+    "Ankhiyon Ke Jharokhon Se audio",
+    "Dulhe Ka Sehra audio"
 ];
 
 async function getIds() {
