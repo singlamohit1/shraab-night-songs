@@ -118,6 +118,12 @@ export const songs = [
     title: "Saat Samundar Paar",
     artist: "Udit Narayan",
     youtubeId: "SuQKUY_QMrY",
+  },
+  {
+    id: 19,
+    title: "Aaye Ho Meri Zindagi Mein",
+    artist: "Udit Narayan",
+    youtubeId: "VoTnpKGUW8k",
   }
 ];
 
