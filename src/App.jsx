@@ -72,12 +72,13 @@ function App() {
         style={{ backgroundImage: `url('/bg.jpg')` }}
       ></div>
       <video 
+        key={playlistMode}
         className="background-layer" 
         autoPlay 
         loop 
         muted 
         playsInline 
-        src="/bg.mp4"
+        src={playlistMode === 'bollywood' ? '/bg-bollywood.mp4' : '/bg-punjabi.mp4'}
       ></video>
       <div className="overlay"></div>
       
