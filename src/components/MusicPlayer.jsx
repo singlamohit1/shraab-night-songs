@@ -176,6 +176,7 @@ const MusicPlayer = ({ playlistData }) => {
             <input
               type="range"
               className="progress-bar"
+              step="any"
               value={progress || 0}
               onChange={handleProgressChange}
             />
