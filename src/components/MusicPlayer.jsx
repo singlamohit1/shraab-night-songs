@@ -40,6 +40,9 @@ const MusicPlayer = ({ playlistData }) => {
     // YT.PlayerState.PLAYING = 1
     // YT.PlayerState.PAUSED = 2
     // YT.PlayerState.ENDED = 0
+    // YT.PlayerState.BUFFERING = 3
+    // YT.PlayerState.UNSTARTED = -1
+    
     if (event.data === 1) {
       if (!isPlaying) {
         posthog.capture('song_played', {
@@ -51,8 +54,8 @@ const MusicPlayer = ({ playlistData }) => {
       setIsPlaying(true);
       setDuration(event.target.getDuration());
       startProgressLoop(event.target);
-    } else {
-      if (event.data === 2 && isPlaying) {
+    } else if (event.data === 2) {
+      if (isPlaying) {
         posthog.capture('song_paused', {
           title: currentSong.title,
           artist: currentSong.artist
@@ -60,14 +63,16 @@ const MusicPlayer = ({ playlistData }) => {
       }
       setIsPlaying(false);
       stopProgressLoop();
-    }
-    
-    if (event.data === 0) {
+    } else if (event.data === 0) {
       posthog.capture('song_completed', {
         title: currentSong.title
       });
+      setIsPlaying(false);
+      stopProgressLoop();
       handleNext();
     }
+    // We explicitly ignore 3 (BUFFERING) and -1 (UNSTARTED) 
+    // so the background video doesn't pause jarringly between songs!
   };
 
   const startProgressLoop = (ytPlayer) => {
@@ -105,12 +110,26 @@ const MusicPlayer = ({ playlistData }) => {
 
   const handleNext = () => {
     posthog.capture('song_next', { current_title: currentSong.title });
-    setCurrentSongIndex((prev) => (prev + 1) % playlistData.length);
+    const nextIndex = (currentSongIndex + 1) % playlistData.length;
+    setCurrentSongIndex(nextIndex);
+    
+    // Synchronously force mobile browsers to load and play within the click handler
+    if (player) {
+      player.loadVideoById(playlistData[nextIndex].youtubeId);
+      player.playVideo();
+    }
   };
 
   const handlePrev = () => {
     posthog.capture('song_prev', { current_title: currentSong.title });
-    setCurrentSongIndex((prev) => (prev - 1 + playlistData.length) % playlistData.length);
+    const prevIndex = (currentSongIndex - 1 + playlistData.length) % playlistData.length;
+    setCurrentSongIndex(prevIndex);
+    
+    // Synchronously force mobile browsers to load and play within the click handler
+    if (player) {
+      player.loadVideoById(playlistData[prevIndex].youtubeId);
+      player.playVideo();
+    }
   };
 
   const handleProgressChange = (e) => {
