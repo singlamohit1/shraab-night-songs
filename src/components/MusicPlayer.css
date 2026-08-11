@@ -162,6 +162,10 @@
 }
 
 @media (max-width: 768px) {
+  .music-player-container {
+    bottom: max(40px, env(safe-area-inset-bottom) + 20px);
+  }
+
   .player-content {
     flex-direction: column;
     gap: 15px;

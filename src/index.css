@@ -19,7 +19,7 @@ body {
   color: var(--text-color);
   background-color: var(--bg-color);
   overflow: hidden;
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
 }
 
@@ -30,7 +30,7 @@ body {
 
 .app-container {
   position: relative;
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
   display: flex;
   flex-direction: column;
