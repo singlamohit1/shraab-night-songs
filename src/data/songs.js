@@ -55,13 +55,7 @@ export const songs = [
     youtubeId: "acZ0LggNtm4", 
     cover: "https://images.unsplash.com/photo-1516223725307-6f76b9ec8742?w=300&h=300&fit=crop",
   },
-  {
-    id: 9,
-    title: "Dulhe Ka Sehra",
-    artist: "Nusrat Fateh Ali Khan",
-    youtubeId: "6hJ7bwZEBoQ", 
-    cover: "https://images.unsplash.com/photo-1582736181711-d0b8f05ed5bd?w=300&h=300&fit=crop",
-  },
+
   {
     id: 10,
     title: "Dheere Dheere Se Meri Zindagi",
@@ -124,6 +118,18 @@ export const songs = [
     title: "Aaye Ho Meri Zindagi Mein",
     artist: "Udit Narayan",
     youtubeId: "VoTnpKGUW8k",
+  },
+  {
+    id: 20,
+    title: "Do Ghoont Mujhe Bhi",
+    artist: "Shruti Rane",
+    youtubeId: "3Z0xBQXTk90",
+  },
+  {
+    id: 21,
+    title: "Mujhe Peene Ka Shauk Nahin",
+    artist: "Alka Yagnik, Shabbir Kumar",
+    youtubeId: "7DgiWQSN-jQ",
   }
 ];
 
