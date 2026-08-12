@@ -130,6 +130,24 @@ export const songs = [
     title: "Mujhe Peene Ka Shauk Nahin",
     artist: "Alka Yagnik, Shabbir Kumar",
     youtubeId: "aolAPBGzNtU",
+  },
+  {
+    id: 22,
+    title: "Log Kehte Hain Main Sharabi Hoon",
+    artist: "Kishore Kumar",
+    youtubeId: "i_P7YWZkCTQ",
+  },
+  {
+    id: 23,
+    title: "Thodi Si Jo Pee Lee Hai",
+    artist: "Kishore Kumar",
+    youtubeId: "Gm64trGXQGs",
+  },
+  {
+    id: 24,
+    title: "Zara Sa Jhoom Loon Main",
+    artist: "Asha Bhosle, Abhijeet",
+    youtubeId: "20EhjERk0vQ",
   }
 ];
 
@@ -217,6 +235,24 @@ export const punjabiSongs = [
     title: "Tera Yaar Bolda",
     artist: "Surjit Bindrakhia",
     youtubeId: "-4svi1QBfjk",
+  },
+  {
+    id: 117,
+    title: "Nasha",
+    artist: "Gippy Grewal",
+    youtubeId: "6nhxpxmFaI8",
+  },
+  {
+    id: 118,
+    title: "Tere Naa Te Bottlan",
+    artist: "Sippy Gill",
+    youtubeId: "D3phboglLqs",
+  },
+  {
+    id: 119,
+    title: "Peg Pugg",
+    artist: "Deep Karan",
+    youtubeId: "7pgZCzhODRI",
   }
 ];
 
