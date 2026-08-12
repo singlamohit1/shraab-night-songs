@@ -121,9 +121,9 @@ export const songs = [
   },
   {
     id: 20,
-    title: "Do Ghoont Mujhe Bhi Pila De",
-    artist: "Lata Mangeshkar",
-    youtubeId: "h5L58LuPqV0",
+    title: "Do Ghoont Pila De Saqiya",
+    artist: "Bappi Lahiri",
+    youtubeId: "tTrAo41t1gs",
   },
   {
     id: 21,
