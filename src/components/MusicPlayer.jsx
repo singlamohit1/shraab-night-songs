@@ -149,12 +149,14 @@ const MusicPlayer = ({ playlistData }) => {
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
+  const initialVideoId = useRef(playlistData[currentSongIndex].youtubeId).current;
+
   return (
     <div className="music-player-container">
       {/* Hidden YouTube Player */}
       <div style={{ position: 'absolute', opacity: 0, zIndex: -100, pointerEvents: 'none' }}>
         <YouTube 
-          videoId={currentSong.youtubeId} 
+          videoId={initialVideoId} 
           opts={opts} 
           onReady={onReady} 
           onStateChange={onStateChange} 

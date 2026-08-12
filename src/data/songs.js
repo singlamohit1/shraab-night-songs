@@ -121,9 +121,9 @@ export const songs = [
   },
   {
     id: 20,
-    title: "Do Ghoont Mujhe Bhi",
-    artist: "Shruti Rane",
-    youtubeId: "3Z0xBQXTk90",
+    title: "Do Ghoont Mujhe Bhi Pila De",
+    artist: "Lata Mangeshkar",
+    youtubeId: "h5L58LuPqV0",
   },
   {
     id: 21,
