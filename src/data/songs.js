@@ -123,13 +123,13 @@ export const songs = [
     id: 20,
     title: "Do Ghoont Pila De Saqiya",
     artist: "Bappi Lahiri",
-    youtubeId: "tTrAo41t1gs",
+    youtubeId: "zZWmhBKECnI",
   },
   {
     id: 21,
     title: "Mujhe Peene Ka Shauk Nahin",
     artist: "Alka Yagnik, Shabbir Kumar",
-    youtubeId: "7DgiWQSN-jQ",
+    youtubeId: "aolAPBGzNtU",
   }
 ];
 
