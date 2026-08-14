@@ -20,12 +20,20 @@ const DrinkingPrompt = ({ onComplete }) => {
 
   const handleYes = () => {
     const historyStr = localStorage.getItem('drinkingHistory');
-    const history = historyStr ? JSON.parse(historyStr) : [];
+    let history = [];
+    if (historyStr) {
+      try {
+        history = JSON.parse(historyStr);
+        if (!Array.isArray(history)) history = [];
+      } catch (e) {
+        history = [];
+      }
+    }
     
     const today = new Date().toLocaleDateString();
     const newEntry = { date: today, timestamp: Date.now() };
     
-    localStorage.setItem('drinkingHistory', JSON.stringify([...history, newEntry].slice(-20)));
+    localStorage.setItem('drinkingHistory', JSON.stringify([...history, newEntry].slice(-15)));
     localStorage.setItem('lastPromptDate', today);
     
     posthog.capture('drinking_session_recorded', { date: today });

@@ -8,10 +8,14 @@ const HistoryBadge = ({ refreshTrigger }) => {
   useEffect(() => {
     const historyStr = localStorage.getItem('drinkingHistory');
     if (historyStr) {
-      const parsedHistory = JSON.parse(historyStr);
-      if (parsedHistory.length > 0) {
-        // Reverse so the most recent is at the top of the list
-        setHistory(parsedHistory.reverse());
+      try {
+        const parsedHistory = JSON.parse(historyStr);
+        if (Array.isArray(parsedHistory) && parsedHistory.length > 0) {
+          // Reverse so the most recent is at the top of the list
+          setHistory(parsedHistory.reverse());
+        }
+      } catch (e) {
+        console.error('Failed to parse history');
       }
     }
   }, [refreshTrigger]);
@@ -37,7 +41,7 @@ const HistoryBadge = ({ refreshTrigger }) => {
         <span className="text">Last session: {lastDate}</span>
       </div>
       
-      {isHovered && history.length > 1 && (
+      {isHovered && history.length > 0 && (
         <div className="history-dropdown">
           <div className="history-dropdown-header">Last {history.length} Sessions</div>
           <ul className="history-list">
