@@ -144,12 +144,6 @@ export const songs = [
     youtubeId: "Gm64trGXQGs",
   },
   {
-    id: 34,
-    title: "Zara Sa Jhoom Loon Main",
-    artist: "Asha Bhosle, Abhijeet",
-    youtubeId: "Wn1j5o9v_Rk"
-  },
-  {
     id: 35,
     title: "Is Pyar Se Meri Taraf Na Dekho",
     artist: "Kumar Sanu",
