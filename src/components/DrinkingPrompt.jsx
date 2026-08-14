@@ -36,7 +36,7 @@ const DrinkingPrompt = ({ onComplete }) => {
     const today = new Date().toLocaleDateString();
     const newEntry = { date: today, timestamp: Date.now() };
     
-    localStorage.setItem('drinkingHistory', JSON.stringify([...history, newEntry].slice(-15)));
+    localStorage.setItem('drinkingHistory', JSON.stringify([...history, newEntry].slice(-10)));
     localStorage.setItem('lastPromptDate', today);
     
     posthog.capture('drinking_session_recorded', { date: today });
