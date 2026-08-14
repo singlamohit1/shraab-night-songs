@@ -154,6 +154,12 @@ export const songs = [
     title: "Do Dil Mil Rahe Hain",
     artist: "Kumar Sanu",
     youtubeId: "5SvIuD6wJRI"
+  },
+  {
+    id: 37,
+    title: "Ae Mere Humsafar",
+    artist: "Udit Narayan, Alka Yagnik",
+    youtubeId: "UCsW7nea7sI"
   }
 ];
 
