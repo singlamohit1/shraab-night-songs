@@ -113,10 +113,9 @@ const MusicPlayer = ({ playlistData }) => {
     const nextIndex = (currentSongIndex + 1) % playlistData.length;
     setCurrentSongIndex(nextIndex);
     
-    // Synchronously force mobile browsers to load and play within the click handler
+    // loadVideoById loads AND plays the video synchronously
     if (player) {
       player.loadVideoById(playlistData[nextIndex].youtubeId);
-      player.playVideo();
     }
   };
 
@@ -125,10 +124,9 @@ const MusicPlayer = ({ playlistData }) => {
     const prevIndex = (currentSongIndex - 1 + playlistData.length) % playlistData.length;
     setCurrentSongIndex(prevIndex);
     
-    // Synchronously force mobile browsers to load and play within the click handler
+    // loadVideoById loads AND plays the video synchronously
     if (player) {
       player.loadVideoById(playlistData[prevIndex].youtubeId);
-      player.playVideo();
     }
   };
 

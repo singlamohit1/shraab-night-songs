@@ -36,7 +36,7 @@ const HistoryBadge = ({ refreshTrigger }) => {
         <span className="icon">🍷</span> Past Sessions
       </div>
       <ul className="history-panel-list">
-        {history.map((session, idx) => (
+        {history.slice(0, 5).map((session, idx) => (
           <li key={session.timestamp || idx}>
             <span className="history-idx">{history.length - idx}.</span>
             <div className="history-info">
