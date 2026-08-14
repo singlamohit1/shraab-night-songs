@@ -35,10 +35,11 @@ const HistoryBadge = ({ refreshTrigger }) => {
       className="history-badge-container"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => setIsHovered(!isHovered)}
     >
       <div className="history-badge">
         <span className="icon">🍷</span>
-        <span className="text">Last session: {lastDate}</span>
+        <span className="text">Last: {lastDate} ({history.length} total)</span>
       </div>
       
       {isHovered && history.length > 0 && (
