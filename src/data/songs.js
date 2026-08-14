@@ -148,6 +148,12 @@ export const songs = [
     title: "Is Pyar Se Meri Taraf Na Dekho",
     artist: "Kumar Sanu",
     youtubeId: "L3gOr6vwSjg"
+  },
+  {
+    id: 36,
+    title: "Do Dil Mil Rahe Hain",
+    artist: "Kumar Sanu",
+    youtubeId: "5SvIuD6wJRI"
   }
 ];
 
