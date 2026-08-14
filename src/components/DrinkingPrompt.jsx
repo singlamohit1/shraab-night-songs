@@ -9,11 +9,14 @@ const DrinkingPrompt = ({ onComplete }) => {
     const lastPromptDate = localStorage.getItem('lastPromptDate');
     const today = new Date().toLocaleDateString();
     
-    // If today is not the last prompt date, show the prompt
-    if (lastPromptDate !== today) {
+    const declinesKey = `promptDeclines_${today}`;
+    const declinesCount = parseInt(localStorage.getItem(declinesKey) || '0', 10);
+    
+    // If they haven't said Yes today AND they haven't declined 2 times today, show prompt
+    if (lastPromptDate !== today && declinesCount < 2) {
       setShowPrompt(true);
     } else {
-      onComplete(); // Already answered today
+      onComplete(); // Already answered Yes today or hit decline limit
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -43,9 +46,11 @@ const DrinkingPrompt = ({ onComplete }) => {
 
   const handleNo = () => {
     const today = new Date().toLocaleDateString();
-    localStorage.setItem('lastPromptDate', today);
+    const declinesKey = `promptDeclines_${today}`;
+    const currentDeclines = parseInt(localStorage.getItem(declinesKey) || '0', 10);
+    localStorage.setItem(declinesKey, (currentDeclines + 1).toString());
     
-    posthog.capture('drinking_session_declined', { date: today });
+    posthog.capture('drinking_session_declined', { date: today, declineCount: currentDeclines + 1 });
     setShowPrompt(false);
     onComplete();
   };
