@@ -66,9 +66,26 @@
   width: 20px;
 }
 
-.history-date {
+.history-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   flex: 1;
+}
+
+.history-date {
   text-align: right;
+}
+
+.history-note {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 2px;
+  font-style: italic;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 130px;
 }
 
 @keyframes slideInRight {

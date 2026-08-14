@@ -45,6 +45,29 @@
   justify-content: center;
 }
 
+.prompt-note-input {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.prompt-note-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.prompt-note-input:focus {
+  border-color: var(--primary-color);
+}
+
 .prompt-buttons button {
   padding: 12px 24px;
   border: none;

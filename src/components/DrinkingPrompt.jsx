@@ -4,6 +4,7 @@ import './DrinkingPrompt.css';
 
 const DrinkingPrompt = ({ onComplete }) => {
   const [showPrompt, setShowPrompt] = useState(false);
+  const [note, setNote] = useState('');
 
   useEffect(() => {
     const lastPromptDate = localStorage.getItem('lastPromptDate');
@@ -34,7 +35,7 @@ const DrinkingPrompt = ({ onComplete }) => {
     }
     
     const today = new Date().toLocaleDateString();
-    const newEntry = { date: today, timestamp: Date.now() };
+    const newEntry = { date: today, timestamp: Date.now(), note: note.trim() };
     
     localStorage.setItem('drinkingHistory', JSON.stringify([...history, newEntry].slice(-10)));
     localStorage.setItem('lastPromptDate', today);
@@ -62,6 +63,14 @@ const DrinkingPrompt = ({ onComplete }) => {
       <div className="prompt-modal">
         <h2>Is this your drinking night? 🥃</h2>
         <p>Set the mood and let's update your session history.</p>
+        <input 
+          type="text" 
+          className="prompt-note-input"
+          placeholder="What's the occasion? (optional)" 
+          maxLength={50}
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+        />
         <div className="prompt-buttons">
           <button className="btn-yes" onClick={handleYes}>Yes, it is!</button>
           <button className="btn-no" onClick={handleNo}>Not today</button>
