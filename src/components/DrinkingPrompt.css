@@ -45,10 +45,22 @@
   justify-content: center;
 }
 
+.prompt-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 .prompt-note-input {
   width: 100%;
   padding: 12px 15px;
-  margin-bottom: 25px;
+  margin-bottom: 0;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.2);
@@ -58,6 +70,33 @@
   outline: none;
   transition: border-color 0.2s ease;
   box-sizing: border-box;
+}
+
+.prompt-note-input.with-clear {
+  padding-right: 40px;
+}
+
+.clear-input-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.clear-input-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .prompt-note-input::placeholder {

@@ -40,7 +40,9 @@ const HistoryBadge = ({ refreshTrigger }) => {
           <li key={session.timestamp || idx}>
             <span className="history-idx">{history.length - idx}.</span>
             <div className="history-info">
-              <span className="history-date">{formatDate(session.timestamp)}</span>
+              <span className="history-date">
+                {session.name ? `${session.name} - ` : ''}{formatDate(session.timestamp)}
+              </span>
               {session.note && <span className="history-note">{session.note}</span>}
             </div>
           </li>

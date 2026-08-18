@@ -5,8 +5,11 @@ import './DrinkingPrompt.css';
 const DrinkingPrompt = ({ onComplete }) => {
   const [showPrompt, setShowPrompt] = useState(false);
   const [note, setNote] = useState('');
+  const [drinkerName, setDrinkerName] = useState('');
 
   useEffect(() => {
+    const randomNames = ["Tipsy T-Rex", "Captain Morgan", "Whiskey Wizard", "Beer Baron", "Vodka Vampire", "Rum Runner", "Gin Genie", "Tequila Terminator", "Sober Sabertooth", "Bourbon Bear"];
+    setDrinkerName(randomNames[Math.floor(Math.random() * randomNames.length)]);
     const lastPromptDate = localStorage.getItem('lastPromptDate');
     const today = new Date().toLocaleDateString();
     
@@ -35,12 +38,13 @@ const DrinkingPrompt = ({ onComplete }) => {
     }
     
     const today = new Date().toLocaleDateString();
-    const newEntry = { date: today, timestamp: Date.now(), note: note.trim() };
+    const finalName = drinkerName.trim() || 'Anonymous Drinker';
+    const newEntry = { date: today, timestamp: Date.now(), note: note.trim(), name: finalName };
     
     localStorage.setItem('drinkingHistory', JSON.stringify([...history, newEntry].slice(-15)));
     localStorage.setItem('lastPromptDate', today);
     
-    posthog.capture('drinking_session_recorded', { date: today });
+    posthog.capture('drinking_session_recorded', { date: today, drinker_name: finalName });
     setShowPrompt(false);
     onComplete();
   };
@@ -63,14 +67,29 @@ const DrinkingPrompt = ({ onComplete }) => {
       <div className="prompt-modal">
         <h2>Is this your drinking night? 🥃</h2>
         <p>Set the mood and let's update your session history.</p>
-        <input 
-          type="text" 
-          className="prompt-note-input"
-          placeholder="What's the occasion? (optional)" 
-          maxLength={50}
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-        />
+        <div className="prompt-inputs">
+          <div className="input-wrapper">
+            <input 
+              type="text" 
+              className="prompt-note-input with-clear"
+              placeholder="Who is drinking? (optional)" 
+              maxLength={30}
+              value={drinkerName}
+              onChange={(e) => setDrinkerName(e.target.value)}
+            />
+            {drinkerName && (
+              <button className="clear-input-btn" onClick={() => setDrinkerName('')}>×</button>
+            )}
+          </div>
+          <input 
+            type="text" 
+            className="prompt-note-input"
+            placeholder="What's the occasion? (optional)" 
+            maxLength={50}
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+          />
+        </div>
         <div className="prompt-buttons">
           <button className="btn-yes" onClick={handleYes}>Yes, it is!</button>
           <button className="btn-no" onClick={handleNo}>Not today</button>
