@@ -8,7 +8,7 @@ const DrinkingPrompt = ({ onComplete }) => {
   const [drinkerName, setDrinkerName] = useState('');
 
   useEffect(() => {
-    const randomNames = ["Tipsy T-Rex", "Captain Morgan", "Whiskey Wizard", "Beer Baron", "Vodka Vampire", "Rum Runner", "Gin Genie", "Tequila Terminator", "Sober Sabertooth", "Bourbon Bear"];
+    const randomNames = ["Talli Baba", "Peg Patiala", "Devdas", "Botal Singh", "Piyakkad", "Raju Thekedaar", "Sharaabi Bhai", "Khamba", "Desi Theka", "Bewda Number 1"];
     setDrinkerName(randomNames[Math.floor(Math.random() * randomNames.length)]);
     const lastPromptDate = localStorage.getItem('lastPromptDate');
     const today = new Date().toLocaleDateString();
