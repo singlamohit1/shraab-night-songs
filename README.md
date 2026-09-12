@@ -1,16 +1,31 @@
-# React + Vite
+# 🥃 shraab.fm
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+> A curated, immersive musical experience for your drinking nights. 
 
-Currently, two official plugins are available:
+**shraab.fm** is a sleek, web-based music player designed to set the perfect mood for your weekend (or weekday) drinks. With a beautiful glassmorphism UI, ambient video backgrounds, and handpicked playlists for both Bollywood and Punjabi vibes, it's your ultimate virtual DJ.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Features
 
-## React Compiler
+- **Curated Playlists:** Switch seamlessly between classic Bollywood hits and upbeat Punjabi bangers.
+- **Ambient UI:** Aesthetic, full-screen video backgrounds that match the mood of your music.
+- **Session Tracking:** Marks your "drinking nights", lets you add custom names/notes, and tracks your history locally!
+- **Keyboard Shortcuts:** Just hit `Spacebar` to play/pause the tunes.
+- **Mobile Optimized:** Built to work beautifully on both desktop and mobile browsers.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Tech Stack
 
-## Expanding the Oxlint configuration
+- React.js + Vite
+- YouTube IFrame Player API (react-youtube)
+- PostHog (Analytics)
+- Pure CSS (Glassmorphism + Animations)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 🛠️ Local Development
+
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Set up your `.env` file using `.env.example`
+4. Start the dev server: `npm run dev`
+
+## 👨‍💻 Maintainers
+
+- [@singlamohit1](https://github.com/singlamohit1)
