@@ -55,13 +55,7 @@ export const songs = [
     youtubeId: "acZ0LggNtm4", 
     cover: "https://images.unsplash.com/photo-1516223725307-6f76b9ec8742?w=300&h=300&fit=crop",
   },
-  {
-    id: 9,
-    title: "Dulhe Ka Sehra",
-    artist: "Nusrat Fateh Ali Khan",
-    youtubeId: "6hJ7bwZEBoQ", 
-    cover: "https://images.unsplash.com/photo-1582736181711-d0b8f05ed5bd?w=300&h=300&fit=crop",
-  },
+
   {
     id: 10,
     title: "Dheere Dheere Se Meri Zindagi",
@@ -124,6 +118,48 @@ export const songs = [
     title: "Aaye Ho Meri Zindagi Mein",
     artist: "Udit Narayan",
     youtubeId: "VoTnpKGUW8k",
+  },
+  {
+    id: 20,
+    title: "Do Ghoont Pila De Saqiya",
+    artist: "Bappi Lahiri",
+    youtubeId: "zZWmhBKECnI",
+  },
+  {
+    id: 21,
+    title: "Mujhe Peene Ka Shauk Nahin",
+    artist: "Alka Yagnik, Shabbir Kumar",
+    youtubeId: "aolAPBGzNtU",
+  },
+  {
+    id: 22,
+    title: "Log Kehte Hain Main Sharabi Hoon",
+    artist: "Kishore Kumar",
+    youtubeId: "i_P7YWZkCTQ",
+  },
+  {
+    id: 23,
+    title: "Thodi Si Jo Pee Lee Hai",
+    artist: "Kishore Kumar",
+    youtubeId: "Gm64trGXQGs",
+  },
+  {
+    id: 35,
+    title: "Is Pyar Se Meri Taraf Na Dekho",
+    artist: "Kumar Sanu",
+    youtubeId: "L3gOr6vwSjg"
+  },
+  {
+    id: 36,
+    title: "Do Dil Mil Rahe Hain",
+    artist: "Kumar Sanu",
+    youtubeId: "5SvIuD6wJRI"
+  },
+  {
+    id: 37,
+    title: "Ae Mere Humsafar",
+    artist: "Udit Narayan, Alka Yagnik",
+    youtubeId: "UCsW7nea7sI"
   }
 ];
 
@@ -211,6 +247,24 @@ export const punjabiSongs = [
     title: "Tera Yaar Bolda",
     artist: "Surjit Bindrakhia",
     youtubeId: "-4svi1QBfjk",
+  },
+  {
+    id: 117,
+    title: "Nasha",
+    artist: "Gippy Grewal",
+    youtubeId: "6nhxpxmFaI8",
+  },
+  {
+    id: 118,
+    title: "Tere Naa Te Bottlan",
+    artist: "Sippy Gill",
+    youtubeId: "D3phboglLqs",
+  },
+  {
+    id: 119,
+    title: "Peg Pugg",
+    artist: "Deep Karan",
+    youtubeId: "7pgZCzhODRI",
   }
 ];
 

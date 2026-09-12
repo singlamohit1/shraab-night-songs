@@ -4,40 +4,58 @@ import './DrinkingPrompt.css';
 
 const DrinkingPrompt = ({ onComplete }) => {
   const [showPrompt, setShowPrompt] = useState(false);
+  const [note, setNote] = useState('');
+  const [drinkerName, setDrinkerName] = useState('');
 
   useEffect(() => {
+    const randomNames = ["Sharaabi Bhai", "Talli Baba", "Botal Singh", "Devdas", "Raju Thekedaar"];
+    setDrinkerName(randomNames[Math.floor(Math.random() * randomNames.length)]);
     const lastPromptDate = localStorage.getItem('lastPromptDate');
     const today = new Date().toLocaleDateString();
     
-    // If today is not the last prompt date, show the prompt
-    if (lastPromptDate !== today) {
+    const declinesKey = `promptDeclines_${today}`;
+    const declinesCount = parseInt(localStorage.getItem(declinesKey) || '0', 10);
+    
+    // If they haven't said Yes today AND they haven't declined 2 times today, show prompt
+    if (lastPromptDate !== today && declinesCount < 2) {
       setShowPrompt(true);
     } else {
-      onComplete(); // Already answered today
+      onComplete(); // Already answered Yes today or hit decline limit
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleYes = () => {
     const historyStr = localStorage.getItem('drinkingHistory');
-    const history = historyStr ? JSON.parse(historyStr) : [];
+    let history = [];
+    if (historyStr) {
+      try {
+        history = JSON.parse(historyStr);
+        if (!Array.isArray(history)) history = [];
+      } catch (e) {
+        history = [];
+      }
+    }
     
     const today = new Date().toLocaleDateString();
-    const newEntry = { date: today, timestamp: Date.now() };
+    const finalName = drinkerName.trim() || 'Anonymous Drinker';
+    const newEntry = { date: today, timestamp: Date.now(), note: note.trim(), name: finalName };
     
-    localStorage.setItem('drinkingHistory', JSON.stringify([...history, newEntry].slice(-20)));
+    localStorage.setItem('drinkingHistory', JSON.stringify([...history, newEntry].slice(-15)));
     localStorage.setItem('lastPromptDate', today);
     
-    posthog.capture('drinking_session_recorded', { date: today });
+    posthog.capture('drinking_session_recorded', { date: today, drinker_name: finalName });
     setShowPrompt(false);
     onComplete();
   };
 
   const handleNo = () => {
     const today = new Date().toLocaleDateString();
-    localStorage.setItem('lastPromptDate', today);
+    const declinesKey = `promptDeclines_${today}`;
+    const currentDeclines = parseInt(localStorage.getItem(declinesKey) || '0', 10);
+    localStorage.setItem(declinesKey, (currentDeclines + 1).toString());
     
-    posthog.capture('drinking_session_declined', { date: today });
+    posthog.capture('drinking_session_declined', { date: today, declineCount: currentDeclines + 1 });
     setShowPrompt(false);
     onComplete();
   };
@@ -49,6 +67,29 @@ const DrinkingPrompt = ({ onComplete }) => {
       <div className="prompt-modal">
         <h2>Is this your drinking night? 🥃</h2>
         <p>Set the mood and let's update your session history.</p>
+        <div className="prompt-inputs">
+          <div className="input-wrapper">
+            <input 
+              type="text" 
+              className="prompt-note-input with-clear"
+              placeholder="Who is drinking? (optional)" 
+              maxLength={30}
+              value={drinkerName}
+              onChange={(e) => setDrinkerName(e.target.value)}
+            />
+            {drinkerName && (
+              <button className="clear-input-btn" onClick={() => setDrinkerName('')}>×</button>
+            )}
+          </div>
+          <input 
+            type="text" 
+            className="prompt-note-input"
+            placeholder="What's the occasion? (optional)" 
+            maxLength={50}
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+          />
+        </div>
         <div className="prompt-buttons">
           <button className="btn-yes" onClick={handleYes}>Yes, it is!</button>
           <button className="btn-no" onClick={handleNo}>Not today</button>

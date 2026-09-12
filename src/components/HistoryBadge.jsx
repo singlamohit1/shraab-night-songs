@@ -8,10 +8,14 @@ const HistoryBadge = ({ refreshTrigger }) => {
   useEffect(() => {
     const historyStr = localStorage.getItem('drinkingHistory');
     if (historyStr) {
-      const parsedHistory = JSON.parse(historyStr);
-      if (parsedHistory.length > 0) {
-        // Reverse so the most recent is at the top of the list
-        setHistory(parsedHistory.reverse());
+      try {
+        const parsedHistory = JSON.parse(historyStr);
+        if (Array.isArray(parsedHistory) && parsedHistory.length > 0) {
+          // Reverse so the most recent is at the top of the list
+          setHistory(parsedHistory.reverse());
+        }
+      } catch (e) {
+        console.error('Failed to parse history');
       }
     }
   }, [refreshTrigger]);
@@ -27,29 +31,23 @@ const HistoryBadge = ({ refreshTrigger }) => {
   const lastDate = formatDate(history[0].timestamp);
 
   return (
-    <div 
-      className="history-badge-container"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="history-badge">
-        <span className="icon">🍷</span>
-        <span className="text">Last session: {lastDate}</span>
+    <div className="history-panel-container">
+      <div className="history-panel-header">
+        <span className="icon">🍷</span> Past Sessions
       </div>
-      
-      {isHovered && history.length > 1 && (
-        <div className="history-dropdown">
-          <div className="history-dropdown-header">Last {history.length} Sessions</div>
-          <ul className="history-list">
-            {history.map((session, idx) => (
-              <li key={session.timestamp || idx}>
-                <span className="history-idx">{history.length - idx}.</span>
-                <span className="history-date">{formatDate(session.timestamp)}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <ul className="history-panel-list">
+        {history.slice(0, 5).map((session, idx) => (
+          <li key={session.timestamp || idx}>
+            <span className="history-idx">{history.length - idx}.</span>
+            <div className="history-info">
+              <span className="history-date">
+                {session.name ? `${session.name} - ` : ''}{formatDate(session.timestamp)}
+              </span>
+              {session.note && <span className="history-note">{session.note}</span>}
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

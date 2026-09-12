@@ -95,6 +95,25 @@ const MusicPlayer = ({ playlistData }) => {
   };
 
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.code === 'Space') {
+        e.preventDefault();
+        if (player) {
+          if (isPlaying) {
+            player.pauseVideo();
+          } else {
+            player.playVideo();
+          }
+        }
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [player, isPlaying]);
+
+  useEffect(() => {
     return () => stopProgressLoop();
   }, []);
 
@@ -113,10 +132,9 @@ const MusicPlayer = ({ playlistData }) => {
     const nextIndex = (currentSongIndex + 1) % playlistData.length;
     setCurrentSongIndex(nextIndex);
     
-    // Synchronously force mobile browsers to load and play within the click handler
+    // loadVideoById loads AND plays the video synchronously
     if (player) {
       player.loadVideoById(playlistData[nextIndex].youtubeId);
-      player.playVideo();
     }
   };
 
@@ -125,10 +143,9 @@ const MusicPlayer = ({ playlistData }) => {
     const prevIndex = (currentSongIndex - 1 + playlistData.length) % playlistData.length;
     setCurrentSongIndex(prevIndex);
     
-    // Synchronously force mobile browsers to load and play within the click handler
+    // loadVideoById loads AND plays the video synchronously
     if (player) {
       player.loadVideoById(playlistData[prevIndex].youtubeId);
-      player.playVideo();
     }
   };
 
@@ -149,12 +166,14 @@ const MusicPlayer = ({ playlistData }) => {
     return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
+  const initialVideoId = useRef(playlistData[currentSongIndex].youtubeId).current;
+
   return (
     <div className="music-player-container">
       {/* Hidden YouTube Player */}
       <div style={{ position: 'absolute', opacity: 0, zIndex: -100, pointerEvents: 'none' }}>
         <YouTube 
-          videoId={currentSong.youtubeId} 
+          videoId={initialVideoId} 
           opts={opts} 
           onReady={onReady} 
           onStateChange={onStateChange} 
