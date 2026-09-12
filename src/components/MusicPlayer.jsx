@@ -95,6 +95,25 @@ const MusicPlayer = ({ playlistData }) => {
   };
 
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.code === 'Space') {
+        e.preventDefault();
+        if (player) {
+          if (isPlaying) {
+            player.pauseVideo();
+          } else {
+            player.playVideo();
+          }
+        }
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [player, isPlaying]);
+
+  useEffect(() => {
     return () => stopProgressLoop();
   }, []);
 

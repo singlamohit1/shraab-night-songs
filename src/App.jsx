@@ -67,6 +67,45 @@ function App() {
         )}
       </div>
 
+      <div className="share-btn-container" style={{ 
+        position: 'absolute', 
+        top: '75px', 
+        right: '25px', 
+        zIndex: 10
+      }}>
+        <button 
+          onClick={() => {
+            if (navigator.share) {
+              navigator.share({
+                title: 'Shraab Night Songs',
+                url: window.location.href
+              });
+            } else {
+              navigator.clipboard.writeText(window.location.href);
+              alert('Link copied to clipboard!');
+            }
+            posthog.capture('site_shared');
+          }}
+          style={{ 
+            background: 'rgba(0, 0, 0, 0.6)', 
+            color: '#fff',
+            border: '1px solid rgba(255,255,255,0.3)', 
+            padding: '8px 16px', 
+            borderRadius: '20px', 
+            cursor: 'pointer', 
+            fontWeight: 'bold',
+            backdropFilter: 'blur(10px)',
+            transition: 'all 0.3s ease',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+          Share
+        </button>
+      </div>
+
       <div 
         className="background-image-layer" 
         style={{ backgroundImage: `url('/bg.jpg')` }}
