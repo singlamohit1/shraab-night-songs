@@ -3,7 +3,7 @@ import YouTube from 'react-youtube';
 import posthog from 'posthog-js';
 import './MusicPlayer.css';
 
-const MusicPlayer = ({ playlistData }) => {
+const MusicPlayer = ({ playlistData, onSongChange }) => {
   const [currentSongIndex, setCurrentSongIndex] = useState(() => Math.floor(Math.random() * playlistData.length));
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -13,6 +13,12 @@ const MusicPlayer = ({ playlistData }) => {
   
   const progressInterval = useRef(null);
   const currentSong = playlistData[currentSongIndex];
+
+  useEffect(() => {
+    if (onSongChange && currentSong) {
+      onSongChange(currentSong);
+    }
+  }, [currentSong, onSongChange]);
 
   // Options for the YouTube iframe
   const opts = {

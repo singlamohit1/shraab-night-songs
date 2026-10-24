@@ -73,3 +73,207 @@ body {
   text-shadow: 0 4px 20px rgba(0, 0, 0, 1), 0 0 10px rgba(0, 0, 0, 0.8), 0 0 2px rgba(0, 0, 0, 0.9);
   text-transform: lowercase;
 }
+
+/* Top Toolbars */
+.top-toolbar-left {
+  position: absolute;
+  top: 75px;
+  left: 25px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.mode-toggle-btn {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.85rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.mode-toggle-btn:hover {
+  background: rgba(30, 30, 30, 0.85);
+  border-color: rgba(255, 255, 255, 0.55);
+  transform: translateY(-1px);
+}
+
+.top-toolbar-right {
+  position: absolute;
+  top: 75px;
+  right: 25px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.share-vibe-btn {
+  background: linear-gradient(135deg, rgba(252, 163, 17, 0.25) 0%, rgba(20, 20, 20, 0.75) 100%);
+  color: #fff;
+  border: 1px solid rgba(252, 163, 17, 0.45);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.85rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  white-space: nowrap;
+}
+
+.share-vibe-btn:hover {
+  background: linear-gradient(135deg, rgba(252, 163, 17, 0.45) 0%, rgba(30, 30, 30, 0.9) 100%);
+  border-color: rgba(252, 163, 17, 0.8);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(252, 163, 17, 0.3);
+  transform: translateY(-1px);
+}
+
+.share-text-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .brand-logo {
+    top: 16px;
+    left: 16px;
+    font-size: 22px;
+  }
+  .top-toolbar-right {
+    top: 16px;
+    right: 16px;
+  }
+  .top-toolbar-left {
+    top: 58px;
+    left: 16px;
+    gap: 8px;
+  }
+  .mode-toggle-btn {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+  }
+  .share-vibe-btn {
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    gap: 6px;
+  }
+  .share-text-full {
+    display: none;
+  }
+  .share-text-mobile {
+    display: inline;
+  }
+}
+
+/* Footer / Founder Attribution */
+.app-footer {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.hiredvoices-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 5px 12px 5px 9px;
+  border-radius: 9999px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.76rem;
+  letter-spacing: 0.2px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  user-select: none;
+}
+
+.hiredvoices-link:hover {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(45, 212, 191, 0.5);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 14px rgba(45, 212, 191, 0.25);
+}
+
+.footer-label {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.hv-logo-img {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.hv-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #10b981 0%, #0d9488 100%);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.hv-arrow {
+  opacity: 0.6;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.hiredvoices-link:hover .hv-arrow {
+  opacity: 1;
+  transform: translate(1px, -1px);
+  color: #2dd4bf;
+}
+
+@media (max-width: 768px) {
+  .app-footer {
+    bottom: max(10px, env(safe-area-inset-bottom) + 6px);
+  }
+  .hiredvoices-link {
+    font-size: 0.72rem;
+    padding: 4px 10px 4px 8px;
+    gap: 6px;
+  }
+}

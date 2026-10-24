@@ -8,6 +8,13 @@ const DrinkingPrompt = ({ onComplete }) => {
   const [drinkerName, setDrinkerName] = useState('');
 
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('noprompt') === '1') {
+      setShowPrompt(false);
+      onComplete();
+      return;
+    }
+
     const randomNames = ["Sharaabi Bhai", "Talli Baba", "Botal Singh", "Devdas", "Raju Thekedaar"];
     setDrinkerName(randomNames[Math.floor(Math.random() * randomNames.length)]);
     const lastPromptDate = localStorage.getItem('lastPromptDate');
