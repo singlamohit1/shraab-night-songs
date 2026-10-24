@@ -95,7 +95,7 @@
 }
 
 .history-dropdown-header {
-  padding: 12px 14px;
+  padding: 10px 14px;
   font-size: 0.85rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.95);
@@ -103,16 +103,46 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(25, 28, 38, 0.75);
+  background: rgba(25, 28, 38, 0.85);
   position: sticky;
   top: 0;
   z-index: 2;
 }
 
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .header-badge {
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.55);
   font-weight: 500;
+}
+
+.history-collapse-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.75);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.72rem;
+  line-height: 1;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.history-collapse-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: scale(1.08);
 }
 
 .history-panel-list {

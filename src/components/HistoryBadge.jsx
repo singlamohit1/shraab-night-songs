@@ -4,7 +4,8 @@ import './HistoryBadge.css';
 const HistoryBadge = ({ refreshTrigger }) => {
   const searchParams = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
   const isTestHistory = searchParams?.get('testHistory') === '1';
-  const initialOpen = searchParams?.get('openHistory') === '1';
+  // Allow ?openHistory=0 to force-closed for testing, otherwise open by default
+  const forceClosed = searchParams?.get('openHistory') === '0';
 
   const [history, setHistory] = useState(() => {
     if (isTestHistory) {
@@ -18,7 +19,9 @@ const HistoryBadge = ({ refreshTrigger }) => {
     }
     return [];
   });
-  const [isOpen, setIsOpen] = useState(initialOpen);
+
+  // By default, past sessions is opened when history exists
+  const [isOpen, setIsOpen] = useState(!forceClosed);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -38,22 +41,6 @@ const HistoryBadge = ({ refreshTrigger }) => {
     }
   }, [refreshTrigger, isTestHistory]);
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (containerRef.current && !containerRef.current.contains(e.target)) {
-        setIsOpen(false);
-      }
-    };
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('touchstart', handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
-    };
-  }, [isOpen]);
-
   if (history.length === 0) return null;
 
   const formatDate = (timestamp) => {
@@ -67,8 +54,8 @@ const HistoryBadge = ({ refreshTrigger }) => {
       <button 
         className={`history-trigger-btn ${isOpen ? 'active' : ''}`}
         onClick={() => setIsOpen(!isOpen)}
-        title="View past drinking sessions"
-        aria-label="View past drinking sessions"
+        title={isOpen ? "Collapse past sessions" : "View past drinking sessions"}
+        aria-label={isOpen ? "Collapse past sessions" : "View past drinking sessions"}
         aria-expanded={isOpen}
       >
         <span className="history-icon">🍷</span>
@@ -93,7 +80,20 @@ const HistoryBadge = ({ refreshTrigger }) => {
         <div className="history-dropdown-menu">
           <div className="history-dropdown-header">
             <span className="header-title">🍷 Past Sessions</span>
-            <span className="header-badge">{history.length} total</span>
+            <div className="header-right-actions">
+              <span className="header-badge">{history.length} total</span>
+              <button 
+                className="history-collapse-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsOpen(false);
+                }}
+                title="Collapse past sessions"
+                aria-label="Collapse past sessions"
+              >
+                ✕
+              </button>
+            </div>
           </div>
           <ul className="history-panel-list">
             {history.slice(0, 5).map((session, idx) => (
