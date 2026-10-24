@@ -1,6 +1,6 @@
 .music-player-container {
   position: absolute;
-  bottom: 40px;
+  bottom: 48px;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
@@ -163,7 +163,7 @@
 
 @media (max-width: 768px) {
   .music-player-container {
-    bottom: max(40px, env(safe-area-inset-bottom) + 20px);
+    bottom: max(56px, env(safe-area-inset-bottom) + 36px);
   }
 
   .player-content {
