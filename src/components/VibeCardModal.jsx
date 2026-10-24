@@ -37,7 +37,15 @@ const VibeCardModal = ({ isOpen, onClose, currentSong, currentSceneId, playlistM
     ? `https://img.youtube.com/vi/${currentSong.youtubeId}/0.jpg` 
     : '/bg.jpg';
 
-  const shareText = `${currentVibe}\n\n🎶 "${songTitle}" — ${songArtist}\n✨ Atmosphere: ${activeScene.name} ${activeScene.icon}\n🍸 Join the session: https://shraab.fm`;
+  const siteUrl = typeof window !== 'undefined' && window.location.origin && !window.location.origin.includes('localhost')
+    ? window.location.origin
+    : 'https://shraab.vercel.app';
+
+  const siteDomain = typeof window !== 'undefined' && window.location.host && !window.location.host.includes('localhost')
+    ? window.location.host
+    : 'shraab.vercel.app';
+
+  const shareText = `${currentVibe}\n\n🎶 "${songTitle}" — ${songArtist}\n✨ Atmosphere: ${activeScene.name} ${activeScene.icon}\n🍸 Join the session: ${siteUrl}`;
 
   const handleCopyText = async () => {
     try {
@@ -55,9 +63,9 @@ const VibeCardModal = ({ isOpen, onClose, currentSong, currentSceneId, playlistM
     if (navigator.share) {
       try {
         await navigator.share({
-          title: "shraab.fm vibe",
+          title: "shraab vibe",
           text: shareText,
-          url: "https://shraab.fm"
+          url: siteUrl
         });
         posthog.capture('vibe_native_share_success');
       } catch (err) {
@@ -240,7 +248,7 @@ const VibeCardModal = ({ isOpen, onClose, currentSong, currentSceneId, playlistM
       ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
       ctx.font = '500 28px Outfit, sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText('Join the vibe at shraab.fm 🥃', width / 2, height - 100);
+      ctx.fillText(`Join the vibe at ${siteDomain} 🥃`, width / 2, height - 100);
       ctx.restore();
 
       // Trigger download
@@ -307,7 +315,7 @@ const VibeCardModal = ({ isOpen, onClose, currentSong, currentSceneId, playlistM
           </div>
 
           <div className="vibe-watermark">
-            shraab.fm 🥃
+            {siteDomain} 🥃
           </div>
         </div>
 
