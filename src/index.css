@@ -134,6 +134,7 @@ body {
   gap: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .share-vibe-btn:hover {
@@ -155,7 +156,11 @@ body {
   }
   .top-toolbar-right {
     top: 16px;
-    right: 16px;
+    right: 14px;
+    gap: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
   .top-toolbar-left {
     top: 58px;
@@ -167,9 +172,9 @@ body {
     font-size: 0.78rem;
   }
   .share-vibe-btn {
-    padding: 6px 12px;
+    padding: 6px 10px;
     font-size: 0.78rem;
-    gap: 6px;
+    gap: 5px;
   }
   .share-text-full {
     display: none;
