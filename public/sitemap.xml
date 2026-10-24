@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://shraab.vercel.app/</loc>
-    <lastmod>2026-08-11</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://shraab.vercel.app/og-image.jpg</image:loc>
+      <image:title>shraab.fm - Curated Bollywood &amp; Punjabi Drinking Playlist</image:title>
+      <image:caption>Late-night drinking playlist with ambient whiskey bar and Punjabi rooftop scenes</image:caption>
+    </image:image>
   </url>
 </urlset>

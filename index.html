@@ -2,32 +2,95 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥃</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary Meta Tags -->
-    <title>shraab.fm - A Bollywood Drinking Playlist</title>
-    <meta name="title" content="shraab.fm - A Bollywood Drinking Playlist" />
-    <meta name="description" content="A hyper-curated playlist playing absolute 90s/00s Bollywood drinking bangers. It sets the mood, plays the classics, and even remembers your last drink." />
-    <meta name="keywords" content="bollywood, 90s, kumar sanu, playlist, drinking, sad songs, hindi music, shraab" />
-    <meta name="theme-color" content="#1a1a1a" />
+    <title>shraab.fm — 90s Bollywood &amp; Punjabi Drinking Songs Playlist</title>
+    <meta name="title" content="shraab.fm — 90s Bollywood &amp; Punjabi Drinking Songs Playlist" />
+    <meta name="description" content="Set the mood with nostalgic 90s/00s Bollywood and energetic Punjabi drinking anthems. Ambient backgrounds, seamless atmosphere scenes, and listening vibe sharing." />
+    <meta name="keywords" content="bollywood drinking songs, punjabi drinking songs, 90s hindi songs, late night playlist, kumar sanu, alka yagnik, shraab fm, ambient music player, drinking vibes, whiskey bar playlist" />
+    <meta name="author" content="shraab.fm" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://shraab.vercel.app/" />
 
-    <!-- Open Graph / Facebook -->
+    <!-- Favicon & Mobile Web App Manifest -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥃</text></svg>" />
+    <link rel="alternate icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#141a29" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="shraab.fm" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="shraab.fm" />
+    <meta property="og:locale" content="en_IN" />
     <meta property="og:url" content="https://shraab.vercel.app/" />
-    <meta property="og:title" content="shraab.fm - A Bollywood Drinking Playlist" />
-    <meta property="og:description" content="A hyper-curated playlist playing absolute 90s/00s Bollywood drinking bangers. It sets the mood, plays the classics, and even remembers your last drink." />
+    <meta property="og:title" content="shraab.fm — 90s Bollywood &amp; Punjabi Drinking Songs Playlist" />
+    <meta property="og:description" content="Set the mood with nostalgic 90s/00s Bollywood and energetic Punjabi drinking anthems. Ambient backgrounds, seamless atmosphere scenes, and listening vibe sharing." />
     <meta property="og:image" content="https://shraab.vercel.app/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://shraab.vercel.app/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="669" />
+    <meta property="og:image:alt" content="shraab.fm - A late night drinking playlist with ambient whiskey bar vibe" />
 
-    <!-- Twitter -->
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:domain" content="shraab.vercel.app" />
     <meta name="twitter:url" content="https://shraab.vercel.app/" />
-    <meta name="twitter:title" content="shraab.fm - A Bollywood Drinking Playlist" />
-    <meta name="twitter:description" content="A hyper-curated playlist playing absolute 90s/00s Bollywood drinking bangers. It sets the mood, plays the classics, and even remembers your last drink." />
+    <meta name="twitter:title" content="shraab.fm — 90s Bollywood &amp; Punjabi Drinking Songs Playlist" />
+    <meta name="twitter:description" content="Set the mood with nostalgic 90s/00s Bollywood and energetic Punjabi drinking anthems. Ambient backgrounds, seamless atmosphere scenes, and listening vibe sharing." />
     <meta name="twitter:image" content="https://shraab.vercel.app/og-image.jpg" />
+    <meta name="twitter:image:alt" content="shraab.fm - A late night drinking playlist with ambient whiskey bar vibe" />
+
+    <!-- Preconnect for Performance & Core Web Vitals -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Yatra+One&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data (Schema.org JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://shraab.vercel.app/#app",
+          "name": "shraab.fm",
+          "url": "https://shraab.vercel.app/",
+          "description": "Late-night curated 90s/00s Bollywood and Punjabi drinking songs playlist with ambient atmosphere scenes.",
+          "applicationCategory": "MultimediaApplication",
+          "genre": ["Bollywood", "Punjabi", "Hindi 90s", "Late Night Vibes"],
+          "operatingSystem": "All modern web browsers",
+          "browserRequirements": "Requires JavaScript. Requires HTML5.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          }
+        },
+        {
+          "@type": "MusicPlaylist",
+          "@id": "https://shraab.vercel.app/#playlist",
+          "name": "shraab.fm Drinking Anthems",
+          "numTracks": 45,
+          "genre": ["Bollywood", "Punjabi"],
+          "description": "A curated collection of nostalgic Bollywood and energetic Punjabi drinking tracks."
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
+    <noscript>
+      <div style="padding: 2rem; text-align: center; color: #ffffff; background: #07090e; font-family: sans-serif; min-height: 100vh;">
+        <h1>shraab.fm — 90s Bollywood &amp; Punjabi Drinking Playlist</h1>
+        <p>A curated late-night music playlist playing timeless 90s Bollywood classics and high-energy Punjabi bangers with immersive ambient atmospheres.</p>
+        <p>Please enable JavaScript to enjoy the music player, ambient scenes, and vibe sharing.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

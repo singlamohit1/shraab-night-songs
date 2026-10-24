@@ -1,3 +1,4 @@
+# robots.txt for https://shraab.vercel.app/
 User-agent: *
 Allow: /
 

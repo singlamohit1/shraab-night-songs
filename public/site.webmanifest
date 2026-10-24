@@ -1,0 +1,23 @@
+{
+  "name": "shraab.fm - Bollywood & Punjabi Drinking Playlist",
+  "short_name": "shraab.fm",
+  "description": "Late-night curated 90s/00s Bollywood and Punjabi drinking songs with ambient atmosphere scenes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07090e",
+  "theme_color": "#141a29",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/og-image.jpg",
+      "sizes": "1200x669",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
