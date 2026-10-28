@@ -15,8 +15,6 @@ const DrinkingPrompt = ({ onComplete }) => {
       return;
     }
 
-    const randomNames = ["Sharaabi Bhai", "Talli Baba", "Botal Singh", "Devdas", "Raju Thekedaar"];
-    setDrinkerName(randomNames[Math.floor(Math.random() * randomNames.length)]);
     const lastPromptDate = localStorage.getItem('lastPromptDate');
     const today = new Date().toLocaleDateString();
     
@@ -45,13 +43,16 @@ const DrinkingPrompt = ({ onComplete }) => {
     }
     
     const today = new Date().toLocaleDateString();
-    const finalName = drinkerName.trim() || 'Anonymous Drinker';
+    const finalName = drinkerName.trim();
     const newEntry = { date: today, timestamp: Date.now(), note: note.trim(), name: finalName };
     
     localStorage.setItem('drinkingHistory', JSON.stringify([...history, newEntry].slice(-15)));
     localStorage.setItem('lastPromptDate', today);
     
-    posthog.capture('drinking_session_recorded', { date: today, drinker_name: finalName });
+    posthog.capture('drinking_session_recorded', { 
+      date: today, 
+      ...(finalName ? { drinker_name: finalName } : {}) 
+    });
     setShowPrompt(false);
     onComplete();
   };
