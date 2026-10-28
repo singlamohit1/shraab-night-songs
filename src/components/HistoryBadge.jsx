@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import posthog from 'posthog-js';
 import './HistoryBadge.css';
 
 const HistoryBadge = ({ refreshTrigger }) => {
@@ -6,6 +7,7 @@ const HistoryBadge = ({ refreshTrigger }) => {
   const isTestHistory = searchParams?.get('testHistory') === '1';
   // Allow ?openHistory=0 to force-closed for testing, otherwise open by default
   const forceClosed = searchParams?.get('openHistory') === '0';
+  const testConfirmClear = searchParams?.get('confirmClear') === '1';
 
   const [history, setHistory] = useState(() => {
     if (isTestHistory) {
@@ -22,6 +24,7 @@ const HistoryBadge = ({ refreshTrigger }) => {
 
   // By default, past sessions is opened when history exists
   const [isOpen, setIsOpen] = useState(!forceClosed);
+  const [showConfirmClear, setShowConfirmClear] = useState(testConfirmClear);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -49,11 +52,22 @@ const HistoryBadge = ({ refreshTrigger }) => {
     return dateObj.toLocaleDateString(undefined, options);
   };
 
+  const handleClearHistory = () => {
+    localStorage.removeItem('drinkingHistory');
+    posthog.capture('drinking_history_cleared', { total_sessions: history.length });
+    setHistory([]);
+    setIsOpen(false);
+    setShowConfirmClear(false);
+  };
+
   return (
     <div className="history-badge-container" ref={containerRef}>
       <button 
         className={`history-trigger-btn ${isOpen ? 'active' : ''}`}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          setIsOpen(!isOpen);
+          if (isOpen) setShowConfirmClear(false);
+        }}
         title={isOpen ? "Collapse past sessions" : "View past drinking sessions"}
         aria-label={isOpen ? "Collapse past sessions" : "View past drinking sessions"}
         aria-expanded={isOpen}
@@ -87,6 +101,7 @@ const HistoryBadge = ({ refreshTrigger }) => {
                 onClick={(e) => {
                   e.stopPropagation();
                   setIsOpen(false);
+                  setShowConfirmClear(false);
                 }}
                 title="Collapse past sessions"
                 aria-label="Collapse past sessions"
@@ -95,6 +110,7 @@ const HistoryBadge = ({ refreshTrigger }) => {
               </button>
             </div>
           </div>
+
           <ul className="history-panel-list">
             {history.slice(0, 5).map((session, idx) => (
               <li key={session.timestamp || idx}>
@@ -108,6 +124,44 @@ const HistoryBadge = ({ refreshTrigger }) => {
               </li>
             ))}
           </ul>
+
+          {showConfirmClear ? (
+            <div className="history-confirm-clear">
+              <div className="confirm-warning-icon">⚠️</div>
+              <div className="confirm-warning-text">
+                <strong>Clear all {history.length} sessions?</strong>
+                <span>This cannot be undone.</span>
+              </div>
+              <div className="confirm-buttons">
+                <button 
+                  className="confirm-btn-delete"
+                  onClick={handleClearHistory}
+                >
+                  Delete all
+                </button>
+                <button 
+                  className="confirm-btn-cancel"
+                  onClick={() => setShowConfirmClear(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="history-dropdown-footer">
+              <button 
+                className="history-clear-trigger-btn"
+                onClick={() => setShowConfirmClear(true)}
+                title="Clear all drinking history"
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                <span>Clear history</span>
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>
